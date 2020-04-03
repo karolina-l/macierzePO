@@ -24,8 +24,6 @@ Wektor::Wektor(double tablica[ROZMIAR])
   for(int i=0; i<ROZMIAR; i++)
   {
     wek[i]=tablica[i];
-    cout<<tablica[i]<<" w:";
-    cout<<wek[i]<<" ";
   }
 }
 
@@ -94,10 +92,9 @@ Wektor Wektor::  operator / (double l) const
 double Wektor:: dlugosc() const
 {
   double wynik, a=0.0;
-  double nowy[ROZMIAR]={0};
   for (int i=0; i<ROZMIAR; i++)
   {
-    a+=nowy[i]*nowy[i];
+    a+=wek[i]*wek[i];
   }
   wynik=sqrt(a);
   return wynik;
@@ -116,17 +113,34 @@ bool Wektor:: operator == (const Wektor & W) const
   }
   if(licznik==ROZMIAR)
   {
-    return TRUE;
+    return true;
   }
   else
   {
-    return FALSE;
+    return false;
   }
 }
 
 bool Wektor:: operator != (const Wektor & W) const
 {
-    return !(this->wek==W.wek);
+    //return !(this->wek==W.wek);
+    double epsilon=0.000001;
+    int licznik =0;
+    for (int i=0; i<ROZMIAR; i++)
+    {
+      if(this->wek[i]-W.wek[i]<epsilon)
+      {
+        licznik++;
+      }
+    }
+    if(licznik==ROZMIAR)
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
 }
 
 const double & Wektor:: operator[] (int index) const
@@ -135,6 +149,10 @@ const double & Wektor:: operator[] (int index) const
   {
     cerr << "indeks poza zakresem" << endl;
     exit(1);
+  }
+  else
+  {
+    return wek[index];
   }
 }
 
@@ -145,6 +163,10 @@ double & Wektor:: operator[] (int index)
      cerr << "indeks poza zakresem" << endl;
      exit(1);
    }
+   else
+   {
+     return wek[index];
+   }
  }
 
 istream & operator >> (istream & str, Wektor & W)
@@ -153,7 +175,6 @@ istream & operator >> (istream & str, Wektor & W)
   for(int i=0; i<ROZMIAR; i++)
   {
     str >> pom[i];
-    cout<<"pom: "<<pom[i]<<" ";
   }
   W=Wektor(pom);
   return str;

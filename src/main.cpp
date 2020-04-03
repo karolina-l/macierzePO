@@ -22,7 +22,7 @@ int main()
   Wektor W1, W2, W3;
   double tab[ROZMIAR]={1.0,2.0,3.0};
   double a=0, b=2;
-  //double dl=0;
+  double dl=0;
   cout<<"tab: ";
   for(int i=0;i<ROZMIAR;i++)
   {
@@ -51,26 +51,23 @@ int main()
   }
   else
   {
-    cout<<"!=rowne";
+    cout<<"!=rowne"<<endl;
   }
   W3=W1+W2;
   cout<<"W3 - suma W1 i W2: "<<W3<<endl;
-//  Wektor(W3);
   W3=Wektor(tab);
   W3+=W2;
   cout<<"W3 - suma W1 i W2: "<<W3<<endl;
-//  Wektor(W3);
   W3=W1-W2;
   cout<<"W3 - roznica W1 i W2: "<<W3<<endl;
-  //Wektor(W3);
   a=W1*W2;
   cout<<"W3 - iloczyn W1 i W2: "<<a<<endl;
   W3=W1*b;
   cout<<"W3 - W1*2: "<<W3<<endl;
   W3=W3/b;
   cout<<"W3 - W3/2: "<<W3<<endl;
-  //dl=dlugosc(W1);
-  //cout<<"Dlugosc W1: "<<dl<<endl;
+  dl=dlugosc(W1);
+  cout<<"Dlugosc W1: "<<dl<<endl;
   cout<<"KONIEC"<<endl;
 
 

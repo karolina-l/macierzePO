@@ -1,7 +1,6 @@
 #ifndef WEKTOR_HH
 #define WEKTOR_HH
-#define TRUE 1
-#define FALSE 0
+
 
 #include "rozmiar.h"
 #include <iostream>
