@@ -38,7 +38,7 @@ void MacierzKw::zmien_kolumne(int ind, Wektor W)
 {
   for (int i=0; i<ROZMIAR; i++)
   {
-
+    mtx[i][ind]=W[i];
   }
 }
 
@@ -101,10 +101,45 @@ const MacierzKw MacierzKw::transponuj() const
   return(MacierzKw(W));
 }
 
-//const MacierzKw MacierzKw::  operator * (const MacierzKw & M)
-//{
+const MacierzKw MacierzKw::  operator * (const MacierzKw & M)
+{
+  MacierzKw MA=M.transponuj();
+  Wektor w[ROZMIAR];
+  for(int i=0; i<ROZMIAR; i++)
+  {
+    for (int j=0; j<ROZMIAR; j++)
+    {
+      w[i][j]=mtx[i][j]*MA[i][j];
+    }
+  }
 
-//}
+  return (MacierzKw(w));
+}
+
+const MacierzKw MacierzKw::  operator * (double l)
+{
+  Wektor w[ROZMIAR];
+  for (int i=0; i<ROZMIAR; i++)
+  {
+    w[i]=mtx[i]*l;
+  }
+  return(MacierzKw(w));
+}
+
+const Wektor MacierzKw::operator * (const Wektor & W)
+{
+  MacierzKw MA=*this;
+  //MA=MA.transponuj();
+  Wektor wyn;
+  for (int i=0; i<ROZMIAR; i++)
+  {
+    for (int j=0; j<ROZMIAR; j++)
+    {
+      wyn[i]+=MA[i][j]*W[j];
+    }
+  }
+  return(wyn);
+}
 
 const MacierzKw MacierzKw:: operator + (const MacierzKw & M)
 {

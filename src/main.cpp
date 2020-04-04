@@ -76,7 +76,7 @@ MacierzKw mat1, mat2, mat3;
 Wektor w1,w4;
 //Wektor w2, w3;
 Wektor tw[ROZMIAR];
-double tab1[ROZMIAR]={3.3, 2.2, 1.1};
+double tab1[ROZMIAR]={3.0, 2.0, 1.0};
 //double t1={1, 2, 3}
 //double t2={4, 5, 6};
 //double t3={7, 8, 9};
@@ -106,8 +106,13 @@ w4=mat2.zwroc_kolumne(1);
 cout<<"kolumna 1 mat2: "<<endl<<w4<<endl;
 mat3=mat2.transponuj();
 cout<<"mat2 po transpozycji: "<<endl<<mat3<<endl;
-cout<<"dodawanie :"<<endl<<mat1+mat2<<endl;
-cout<<"odejmowanie :"<<endl<<mat1-mat2<<endl;
+cout<<"dodawanie: "<<endl<<mat1+mat2<<endl;
+cout<<"odejmowanie: "<<endl<<mat1-mat2<<endl;
+cout<<"mnozenie: "<<endl<<mat1*mat2<<endl;
+cout<<"mnozenie double: "<<endl<<mat2*3<<endl;
+cout<<mat2<<endl;
+cout<<endl<<w1<<endl;
+cout<<"mnozenie wektor: "<<endl<<mat2*w1<<endl;
 cout<<"KONIEC"<<endl;
 
 
