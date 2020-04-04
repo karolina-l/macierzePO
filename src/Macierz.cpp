@@ -26,14 +26,20 @@ MacierzKw:: MacierzKw(const Wektor tab[ROZMIAR])
 
 Wektor MacierzKw:: zwroc_kolumne(int ind)
 {
-  Wektor zwr;
-  zwr=mtx[ind];
-  return zwr;
+  double zwr[ROZMIAR];
+  for (int i=0; i<ROZMIAR; i++)
+  {
+    zwr[i]=mtx[i][ind];
+  }
+  return Wektor(zwr);
 }
 
 void MacierzKw::zmien_kolumne(int ind, Wektor W)
 {
-  mtx[ind]=W;
+  for (int i=0; i<ROZMIAR; i++)
+  {
+
+  }
 }
 
 istream & operator >> (istream &str, MacierzKw &M)
@@ -42,8 +48,7 @@ istream & operator >> (istream &str, MacierzKw &M)
   Wektor W;
   for (int i=0; i<ROZMIAR; i++)
   {
-    str >> pom[i];
-    W=Wektor(pom);
+    str >> W;
     M[i]=W;
   }
   return str;
@@ -59,17 +64,72 @@ ostream & operator << (ostream &str, const MacierzKw &M)
   return str;
 }
 
-
-
-/*const MacierzKw:: transponuj() const
+const Wektor & MacierzKw:: operator[] (int index) const
 {
-  double pom[ROZMIAR][ROZMIAR]={0};
-  for (int i=0; i<r; i++)
+  if (index < 0 || index > ROZMIAR)
+  {
+    cerr << "indeks poza zakresem" << endl;
+    exit(1);
+  }
+  else
+  {
+    return mtx[index];
+  }
+}
+
+Wektor & MacierzKw::operator[] (int index)
+{
+  if (index < 0 || index > ROZMIAR)
+  {
+    cerr << "indeks poza zakresem" << endl;
+    exit(1);
+  }
+  else
+  {
+    return mtx[index];
+  }
+}
+
+const MacierzKw MacierzKw::transponuj() const
+{
+  Wektor W[ROZMIAR];
+  MacierzKw pom=*this;
+  for (int i=0; i<ROZMIAR; i++)
+  {
+    W[i]=pom.zwroc_kolumne(i);
+  }
+  return(MacierzKw(W));
+}
+
+//const MacierzKw MacierzKw::  operator * (const MacierzKw & M)
+//{
+
+//}
+
+const MacierzKw MacierzKw:: operator + (const MacierzKw & M)
+{
+  Wektor W[ROZMIAR];
+  //MacierzKw pom=*this;
+  for (int i=0; i<ROZMIAR; i++)
   {
     for (int j=0; j<ROZMIAR; j++)
     {
-      pom[j][i]=mtx[i][j];
+        W[i][j]=mtx[i][j]+M[i][j];
     }
   }
-  return MacierzKw(pom);
-}*/
+  return(MacierzKw(W));
+}
+
+const MacierzKw MacierzKw:: operator - (const MacierzKw & M)
+{
+  Wektor W[ROZMIAR];
+  //MacierzKw pom=*this;
+  for (int i=0; i<ROZMIAR; i++)
+  {
+    for (int j=0; j<ROZMIAR; j++)
+    {
+        W[i][j]=mtx[i][j]-M[i][j];
+    }
+  }
+  return(MacierzKw(W));
+}

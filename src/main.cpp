@@ -72,7 +72,7 @@ int main()
   cout<<"KONIEC"<<endl;*/
 
 ////////MACIERZ////////
-MacierzKw mat1, mat2;
+MacierzKw mat1, mat2, mat3;
 Wektor w1,w4;
 //Wektor w2, w3;
 Wektor tw[ROZMIAR];
@@ -80,7 +80,7 @@ double tab1[ROZMIAR]={3.3, 2.2, 1.1};
 //double t1={1, 2, 3}
 //double t2={4, 5, 6};
 //double t3={7, 8, 9};
-double t[ROZMIAR][ROZMIAR]={0.0};
+
 w1=Wektor(tab1);
 //w2=Wektor(t2);
 //w3=Wektor(t3);
@@ -89,22 +89,25 @@ for(int i=0; i<ROZMIAR; i++)
 {
   for (int j=0; j<ROZMIAR; j++)
   {
-    tw[i][j]=t[i][j];
+    tw[i][j]=i*2+j;
   }
 }
 
-cout<<"mat1 po init: "<<MacierzKw(mat1)<<endl;
-cout<<"mat2 po init : "<<MacierzKw(mat2)<<endl;
+cout<<"mat1 po init: "<<endl<<MacierzKw(mat1)<<endl;
+cout<<"mat2 po init : "<<endl<<MacierzKw(mat2)<<endl;
 cout<<"Podaj mat1: ";
 cin>>mat1;
-cout<<"mat1 po wpisaniu recznym: "<<mat1<<endl;
+cout<<"mat1 po wpisaniu recznym: "<<endl<<mat1<<endl;
 mat2=MacierzKw(tw);
-cout<<"mat2 po init tw: "<<mat2<<endl;
+cout<<"mat2 po init tw: "<<endl<<mat2<<endl;
 mat1.zmien_kolumne(1, w1);
-cout<<"mat1 po zmianie kolumny 1: "<<mat1<<endl;
-w4=mat2.zwroc_kolumne(2);
-cout<<"kolumna 2 mat2: "<<w4<<endl;
-
+cout<<"mat1 po zmianie kolumny 1: "<<endl<<mat1<<endl;
+w4=mat2.zwroc_kolumne(1);
+cout<<"kolumna 1 mat2: "<<endl<<w4<<endl;
+mat3=mat2.transponuj();
+cout<<"mat2 po transpozycji: "<<endl<<mat3<<endl;
+cout<<"dodawanie :"<<endl<<mat1+mat2<<endl;
+cout<<"odejmowanie :"<<endl<<mat1-mat2<<endl;
 cout<<"KONIEC"<<endl;
 
 

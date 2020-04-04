@@ -30,14 +30,14 @@ class MacierzKw {
   int rzad();
 
   const MacierzKw transponuj() const;
-  //void transponuj();
+  void transponuj();
 
   const MacierzKw & odwroc() const;
   //void odwroc();
 
-  const MacierzKw & operator * (const MacierzKw & M);
-  const MacierzKw & operator + (const MacierzKw & M);
-  const MacierzKw & operator - (const MacierzKw & M);
+  const MacierzKw  operator * (const MacierzKw & M);
+  const MacierzKw  operator + (const MacierzKw & M);
+  const MacierzKw  operator - (const MacierzKw & M);
   const MacierzKw & operator * (double l);
   const Wektor & operator*(const Wektor & W);
 
