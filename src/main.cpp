@@ -19,7 +19,8 @@ using namespace std;
 int main()
 {
   //UkladRownanL   UklRown;   // To tylko przykladowe definicje zmiennej
-  Wektor W1, W2, W3;
+///////WEKTOR////////
+  /* Wektor W1, W2, W3;
   double tab[ROZMIAR]={1.0,2.0,3.0};
   double a=0, b=2;
   double dl=0;
@@ -66,9 +67,48 @@ int main()
   cout<<"W3 - W1*2: "<<W3<<endl;
   W3=W3/b;
   cout<<"W3 - W3/2: "<<W3<<endl;
-  dl=dlugosc(W1);
+  dl=W1.dlugosc();
   cout<<"Dlugosc W1: "<<dl<<endl;
-  cout<<"KONIEC"<<endl;
+  cout<<"KONIEC"<<endl;*/
+
+////////MACIERZ////////
+MacierzKw mat1, mat2;
+Wektor w1,w4;
+//Wektor w2, w3;
+Wektor tw[ROZMIAR];
+double tab1[ROZMIAR]={3.3, 2.2, 1.1};
+//double t1={1, 2, 3}
+//double t2={4, 5, 6};
+//double t3={7, 8, 9};
+double t[ROZMIAR][ROZMIAR]={0.0};
+w1=Wektor(tab1);
+//w2=Wektor(t2);
+//w3=Wektor(t3);
+
+for(int i=0; i<ROZMIAR; i++)
+{
+  for (int j=0; j<ROZMIAR; j++)
+  {
+    tw[i][j]=t[i][j];
+  }
+}
+
+cout<<"mat1 po init: "<<MacierzKw(mat1)<<endl;
+cout<<"mat2 po init : "<<MacierzKw(mat2)<<endl;
+cout<<"Podaj mat1: ";
+cin>>mat1;
+cout<<"mat1 po wpisaniu recznym: "<<mat1<<endl;
+mat2=MacierzKw(tw);
+cout<<"mat2 po init tw: "<<mat2<<endl;
+mat1.zmien_kolumne(1, w1);
+cout<<"mat1 po zmianie kolumny 1: "<<mat1<<endl;
+w4=mat2.zwroc_kolumne(2);
+cout<<"kolumna 2 mat2: "<<w4<<endl;
+
+cout<<"KONIEC"<<endl;
+
+
+
 
 
 }

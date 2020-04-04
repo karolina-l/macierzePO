@@ -94,7 +94,7 @@ double Wektor:: dlugosc() const
   double wynik, a=0.0;
   for (int i=0; i<ROZMIAR; i++)
   {
-    a+=wek[i]*wek[i];
+    a+=this->wek[i]*this->wek[i];
   }
   wynik=sqrt(a);
   return wynik;

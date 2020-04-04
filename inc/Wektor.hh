@@ -24,7 +24,6 @@ class Wektor {
    */
 
    Wektor();
-   Wektor(double x,double y, double z);
    Wektor(double tablica[ROZMIAR]);
 
    Wektor  operator += (const Wektor & W); //W1 += W2  , W1 += W3 += W4
