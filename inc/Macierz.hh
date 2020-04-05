@@ -11,28 +11,28 @@ using namespace std;
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
  *  i jakie ma glowne cechy.
  */
-class MacierzKw {
+class MacierzKw {//reprezentacja wierszowa
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
-   Wektor mtx[ROZMIAR]; //tablica wektorow
+  Wektor mtx[ROZMIAR]; //tablica wektorow
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
    */
 
-   MacierzKw();
+  MacierzKw();
   MacierzKw(const Wektor  tab[ROZMIAR]);
   //MacierzKw(Wektor A, Wektor B, Wektor C);
 
-  double wyznacznik();// rozwiniecje laplace'a, gaussa, sarrusa
+  double wyznacznik(int wiersz, int kolumna);// rozwiniecje laplace'a, gaussa, sarrusa
   // double wyznacznikGauss(); double wyznacznik(metoda met = Gauss) <- enum
   int rzad();
 
   const MacierzKw transponuj() const;
   //void transponuj();
 
-  const MacierzKw & odwroc() const;
+ MacierzKw  odwroc() const;
   //void odwroc();
 
   const MacierzKw  operator * (const MacierzKw & M);
@@ -49,7 +49,7 @@ class MacierzKw {
 
   Wektor  zwroc_kolumne(int ind); //dla interpretacji wierszowej
   void zmien_kolumne(int ind, Wektor W); //dla interpretacji wierszowej
-
+  MacierzKw  zamieno1();
 };
 
 

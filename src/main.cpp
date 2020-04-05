@@ -76,6 +76,7 @@ MacierzKw mat1, mat2, mat3;
 Wektor w1,w4;
 //Wektor w2, w3;
 Wektor tw[ROZMIAR];
+double wyzn=0;
 double tab1[ROZMIAR]={3.0, 2.0, 1.0};
 //double t1={1, 2, 3}
 //double t2={4, 5, 6};
@@ -93,12 +94,12 @@ for(int i=0; i<ROZMIAR; i++)
   }
 }
 
-cout<<"mat1 po init: "<<endl<<MacierzKw(mat1)<<endl;
-cout<<"mat2 po init : "<<endl<<MacierzKw(mat2)<<endl;
+//cout<<"mat1 po init: "<<endl<<MacierzKw(mat1)<<endl;
+//cout<<"mat2 po init : "<<endl<<MacierzKw(mat2)<<endl;
 cout<<"Podaj mat1: ";
 cin>>mat1;
-cout<<"mat1 po wpisaniu recznym: "<<endl<<mat1<<endl;
-mat2=MacierzKw(tw);
+//cout<<"mat1 po wpisaniu recznym: "<<endl<<mat1<<endl;
+/*mat2=MacierzKw(tw);
 cout<<"mat2 po init tw: "<<endl<<mat2<<endl;
 mat1.zmien_kolumne(1, w1);
 cout<<"mat1 po zmianie kolumny 1: "<<endl<<mat1<<endl;
@@ -113,10 +114,12 @@ cout<<"mnozenie double: "<<endl<<mat2*3<<endl;
 cout<<mat2<<endl;
 cout<<endl<<w1<<endl;
 cout<<"mnozenie wektor: "<<endl<<mat2*w1<<endl;
-cout<<"KONIEC"<<endl;
+cout<<"KONIEC"<<endl;*/
 
-
-
+//wyzn=mat1.wyznacznik(0,0);
+wyzn=mat1.wyznacznik(0,0);
+cout<<"wyznacznik: "<<endl<<wyzn<<endl;
+//cout<<mat1.odwroc();
 
 
 }
