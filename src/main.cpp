@@ -117,9 +117,9 @@ cout<<"mnozenie wektor: "<<endl<<mat2*w1<<endl;
 cout<<"KONIEC"<<endl;*/
 
 //wyzn=mat1.wyznacznik(0,0);
-wyzn=mat1.wyznacznik(0,0);
-cout<<"wyznacznik: "<<endl<<wyzn<<endl;
-//cout<<mat1.odwroc();
+//wyzn=mat1.wyznacznik(0,0);
+//cout<<"wyznacznik: "<<endl<<wyzn<<endl;
+cout<<mat1.odwroc();
 
 
 }
