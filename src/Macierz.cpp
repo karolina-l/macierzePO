@@ -320,13 +320,15 @@ double MacierzKw:: wyznacznik(int wiersz, int kolumna)
 
         while(licznik<ROZMIAR)
         {
-          M[0]=M[0]/M[0][licznik];
           W[0]=W[0]/M[0][licznik];
-          cout<<"W "<<W<<endl;
+          M[0]=M[0]/M[0][licznik];
+
+          cout<<"W "<<W[0]<<endl;
           for(int i=1; i<ROZMIAR; i++)
           {
-            M[i]=M[i]-(M[0]*M[i][licznik]);
             W[i]=W[i]-(W[0]*M[i][licznik]);
+            M[i]=M[i]-(M[0]*M[i][licznik]);
+
           }
           licznik++;
           Wektor  buf;
@@ -362,5 +364,5 @@ double MacierzKw:: wyznacznik(int wiersz, int kolumna)
         }
 
 
-    return MacierzKw(M);
+    return MacierzKw(W);
 }
