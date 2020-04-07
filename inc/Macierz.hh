@@ -25,16 +25,13 @@ class MacierzKw {//reprezentacja wierszowa
   MacierzKw(const Wektor  tab[ROZMIAR]);
   //MacierzKw(Wektor A, Wektor B, Wektor C);
 
-  double wyznacznik(int wiersz, int kolumna);// rozwiniecje laplace'a, gaussa, sarrusa
+  double wyznacznik();// rozwiniecje laplace'a, gaussa, sarrusa
   // double wyznacznikGauss(); double wyznacznik(metoda met = Gauss) <- enum
   int rzad();
 
   const MacierzKw transponuj() const;
-  //void transponuj();
 
  MacierzKw  odwroc() const;
-  //void odwroc();
-
   const MacierzKw  operator * (const MacierzKw & M);
   const MacierzKw  operator + (const MacierzKw & M);
   const MacierzKw  operator - (const MacierzKw & M);
@@ -43,9 +40,6 @@ class MacierzKw {//reprezentacja wierszowa
 
   const Wektor & operator[] (int index) const;//wg. 2. propozycji
   Wektor & operator[] (int index); // M[2][0] - zerowy element, drugiego wektora
-
-  //const double & operator() (int ind1, int ind2) const;//wg. 1. propozycji
-  //double & operator() (int ind1, int ind2); //M(2,0)
 
   Wektor  zwroc_kolumne(int ind); //dla interpretacji wierszowej
   void zmien_kolumne(int ind, Wektor W); //dla interpretacji wierszowej

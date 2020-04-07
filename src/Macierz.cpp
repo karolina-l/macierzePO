@@ -206,70 +206,72 @@ MacierzKw MacierzKw:: zamieno1()
       }
       return pom.transponuj();
 }
-/*double MacierzKw:: wyznacznik(int wiersz, int kolumna)
-{
-    MacierzKw pom=*this;
-    //Wektor wktr[ROZMIAR], buf, bufk;
-    double wyn=1.0;
-    int licznik=0;
-    while(licznik<ROZMIAR)
-    {
-      for (int i=wiersz; i<ROZMIAR; i++)
-      {
-        for(int j=kolumna; j<ROZMIAR; j++)
-        {
-
-          if((i<(ROZMIAR-1))&&(j<(ROZMIAR-1)))
-          {
-            wyn+=pow((-1),i+j+2)*pom[i][j]*pom.wyznacznik(i+1,j+1);
-
-          }
-          if(i==(ROZMIAR-1)&&(j==(ROZMIAR-1)))
-          {
-            wyn*=pom[i][j];
-          }
-          if(i==(ROZMIAR-2)&&(j==(ROZMIAR-1)))
-          {
-            wyn+=pow((-1),i+j+2)*pom[i][j]*pom.wyznacznik(i+1,j-1);
-          }
-          if(i==(ROZMIAR-1)&&(j==(ROZMIAR-2)))
-          {
-            wyn*=pom[i][j];
-            j++;
-          }
-        }
-      }
-      pom=pom.zamieno1();
-      licznik++;
-    }
-
-      return wyn;
-}*/
-double MacierzKw:: wyznacznik(int wiersz, int kolumna)
+/*double MacierzKw:: wyznacznik(int it)
 {
   MacierzKw pom=*this;
-  Wektor buf, buf1;
-  double wyn=1.0;
-  for (int i=0; i<ROZMIAR; i++)
+  double wyn=0.0;
+  int wiersz=ROZMIAR- it-1, pot;
+
+  if(wiersz==0)
   {
-    if(i==1)
-    {
-      buf=pom.zwroc_kolumne(i-1);
-      buf1=pom.zwroc_kolumne(i);
-      pom.zmien_kolumne(i,buf);
-      pom.zmien_kolumne(i-1,buf1);
-    }
-    if(i==2)
-    {
-      buf=pom.zwroc_kolumne(i-2);
-      buf1=pom.zwroc_kolumne(i);
-      pom.zmien_kolumne(i,buf);
-      pom.zmien_kolumne(i-2,buf1);
-    }
-
-    wyn+=pow((-1),2)*pom[0][0]*(pow((-1),2)*pom[1][1]*pom[2][2]+pow((-1),3)*pom[1][2]*pom[2][1]);
-
+    return pom[0][0];
   }
+  else
+  {
+    for(int i=wiersz; i>=0; i--)
+    {
+      pot=pow((-1), wiersz+i);
+      cout<<pot<<" ";
+      wyn=wyn+pot*pom[wiersz][i]*pom.wyznacznik(it+1);
+    }
+
+}
+cout<<"wy "<<wyn<<endl;
+return wyn;
+}*/
+
+double MacierzKw:: wyznacznik()
+{
+  MacierzKw pom=*this;
+  cout<<"pom0: "<<endl<<pom<<endl;
+  double mnoz=1.0; //kiedys LZespolona
+  double wyn=1.0; //kiedys LZespolona
+
+  int w, k, i;
+
+  for (k=0; k<ROZMIAR-1; k++)
+  {
+    for (w=k+1; w<ROZMIAR; w++)
+    {
+        mnoz=pom[w][k]/pom[k][k];
+
+      for (i=k; i<ROZMIAR; i++)
+      {
+        pom[w][i]=pom[w][i]-pom[k][i]*mnoz;
+      }
+    }
+    cout<<"pom for: "<<endl<<pom<<endl;
+  }
+
+
+/*  for (w=0; w<ROZMIAR-1; w++)
+  {
+    for (k=w+1; k<ROZMIAR; k++)
+    {
+      mnoz=(-pom[k][w])/pom[k-1][w];
+      for (i=w+1; i<=ROZMIAR; i++)
+      {
+        pom[k][i]+=mnoz*pom[w][i];
+      }
+    }
+    cout<<"pom for: "<<endl<<pom<<endl;
+  }
+  cout<<"pom: "<<endl<<pom<<endl;*/
+ for(int j=0; j<ROZMIAR; j++)
+  {
+    wyn=wyn*pom[j][j];
+  }
+  cout<<"po wyn"<<endl;
   return wyn;
 }
 
@@ -296,27 +298,6 @@ double MacierzKw:: wyznacznik(int wiersz, int kolumna)
       M[i][j]=pom[i][j];
     }
   }
-
-      /*  M[licznik]=M[licznik]/M[licznik][licznik];
-        W[licznik]=W[licznik]/M[licznik][licznik];
-        M[licznik+1]=M[licznik+1]-(M[licznik]*M[licznik+1][licznik]);
-        W[licznik+1]=W[licznik+1]-(M[licznik]*W[licznik+1][licznik]);
-        M[licznik+2]=M[licznik+2]-(M[licznik]*M[licznik+2][licznik]);
-        W[licznik+2]=W[licznik+2]-(M[licznik]*W[licznik+2][licznik]);
-        licznik++;
-        M[licznik]=M[licznik]/M[licznik][licznik];
-        W[licznik]=W[licznik]/M[licznik][licznik];
-        M[licznik+1]=M[licznik+1]-(M[licznik]*M[licznik+1][licznik]);
-        W[licznik+1]=W[licznik+1]-(M[licznik]*W[licznik+1][licznik]);
-        M[licznik-1]=M[licznik-1]-(M[licznik]*M[licznik-1][licznik]);
-        W[licznik-1]=W[licznik-1]-(M[licznik]*W[licznik-1][licznik]);
-        licznik++;
-        M[licznik]=M[licznik]/M[licznik][licznik];
-        W[licznik]=W[licznik]/M[licznik][licznik];
-        M[licznik-1]=M[licznik-1]-(M[licznik]*M[licznik-1][licznik]);
-        W[licznik-1]=W[licznik-1]-(M[licznik]*W[licznik-1][licznik]);
-        M[licznik-2]=M[licznik-2]-(M[licznik]*M[licznik-2][licznik]);
-        W[licznik-2]=W[licznik-2]-(M[licznik]*W[licznik-2][licznik]);*/
 
         while(licznik<ROZMIAR)
         {
