@@ -59,6 +59,7 @@ ostream & operator << (ostream &str, const MacierzKw &M)
   for (int i=0; i<ROZMIAR; i++)
   {
     str << M[i];
+    if(i!=(ROZMIAR-1))
     str << endl;
   }
   return str;
@@ -253,20 +254,6 @@ double MacierzKw:: wyznacznik()
     cout<<"pom for: "<<endl<<pom<<endl;
   }
 
-
-/*  for (w=0; w<ROZMIAR-1; w++)
-  {
-    for (k=w+1; k<ROZMIAR; k++)
-    {
-      mnoz=(-pom[k][w])/pom[k-1][w];
-      for (i=w+1; i<=ROZMIAR; i++)
-      {
-        pom[k][i]+=mnoz*pom[w][i];
-      }
-    }
-    cout<<"pom for: "<<endl<<pom<<endl;
-  }
-  cout<<"pom: "<<endl<<pom<<endl;*/
  for(int j=0; j<ROZMIAR; j++)
   {
     wyn=wyn*pom[j][j];

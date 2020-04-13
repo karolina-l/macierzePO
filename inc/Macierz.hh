@@ -11,7 +11,8 @@ using namespace std;
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
  *  i jakie ma glowne cechy.
  */
-class MacierzKw {//reprezentacja wierszowa
+//reprezentacja wierszowa
+class MacierzKw  {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */

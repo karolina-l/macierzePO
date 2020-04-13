@@ -4,6 +4,7 @@
 #include <iostream>
 #include"Macierz.hh"
 #include "Wektor.hh"
+#include "rozmiar.h"
 using namespace std;
 
 
@@ -11,12 +12,12 @@ using namespace std;
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
  *  i jakie ma glowne cechy.
  */
-class UkladRownanL {
+class UkladRownanL    {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
-  MacierzKw A;
-  Wektor B;
+  MacierzKw M;
+  Wektor W;
 
   public:
   /*
@@ -40,7 +41,7 @@ class UkladRownanL {
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt
  */
-istream & operator >> (istream &Strm, UkladRownanL &Ukl);
+istream & operator >> (istream &str, UkladRownanL &Ukl);
 
 /*
  * To przeciazenie trzeba opisac. Co ono robi. Jaki format
@@ -49,7 +50,7 @@ istream & operator >> (istream &Strm, UkladRownanL &Ukl);
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt
  */
-ostream & operator << (ostream  &Strm, const UkladRownanL &Ukl );
+ostream & operator << (ostream  &str, const UkladRownanL &Ukl );
 
 
 #endif
