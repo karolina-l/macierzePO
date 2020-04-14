@@ -26,11 +26,14 @@ class UkladRownanL    {
   UkladRownanL();
   UkladRownanL(MacierzKw AA, Wektor BB);
 
-  MacierzKw zworc_macierz();
-  void zmien_macierz(MacierzKw MM);
+  const MacierzKw zwroc_macierz() const;
+  void zmien_macierz(MacierzKw mat);
   /*analogicznie dla wektora */
 
+  const  Wektor zwroc_wektor() const;
+  void zmien_wektor(Wektor wek);
   Wektor oblicz();
+  double blad(Wektor wyn);
 };
 
 

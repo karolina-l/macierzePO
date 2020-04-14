@@ -59,7 +59,7 @@ ostream & operator << (ostream &str, const MacierzKw &M)
   for (int i=0; i<ROZMIAR; i++)
   {
     str << M[i];
-    if(i!=(ROZMIAR-1))
+    if(i!= (ROZMIAR-1))
     str << endl;
   }
   return str;
@@ -207,34 +207,11 @@ MacierzKw MacierzKw:: zamieno1()
       }
       return pom.transponuj();
 }
-/*double MacierzKw:: wyznacznik(int it)
-{
-  MacierzKw pom=*this;
-  double wyn=0.0;
-  int wiersz=ROZMIAR- it-1, pot;
 
-  if(wiersz==0)
-  {
-    return pom[0][0];
-  }
-  else
-  {
-    for(int i=wiersz; i>=0; i--)
-    {
-      pot=pow((-1), wiersz+i);
-      cout<<pot<<" ";
-      wyn=wyn+pot*pom[wiersz][i]*pom.wyznacznik(it+1);
-    }
-
-}
-cout<<"wy "<<wyn<<endl;
-return wyn;
-}*/
 
 double MacierzKw:: wyznacznik()
 {
   MacierzKw pom=*this;
-  cout<<"pom0: "<<endl<<pom<<endl;
   double mnoz=1.0; //kiedys LZespolona
   double wyn=1.0; //kiedys LZespolona
 
@@ -251,14 +228,13 @@ double MacierzKw:: wyznacznik()
         pom[w][i]=pom[w][i]-pom[k][i]*mnoz;
       }
     }
-    cout<<"pom for: "<<endl<<pom<<endl;
   }
 
  for(int j=0; j<ROZMIAR; j++)
   {
     wyn=wyn*pom[j][j];
   }
-  cout<<"po wyn"<<endl;
+
   return wyn;
 }
 
