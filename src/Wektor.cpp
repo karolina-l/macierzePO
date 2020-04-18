@@ -4,12 +4,6 @@
 
 using namespace std;
 
-/*
- *  Tutaj nalezy zdefiniowac odpowiednie metody
- *  klasy Wektor, ktore zawieraja wiecej kodu
- *  niz dwie linijki.
- *  Mniejsze metody mozna definiwac w ciele klasy.
- */
 
 Wektor::Wektor()
 {
@@ -18,7 +12,6 @@ Wektor::Wektor()
     wek[i]=0.0;
   }
 }
-
 Wektor::Wektor(double tablica[ROZMIAR])
 {
   for(int i=0; i<ROZMIAR; i++)
@@ -27,15 +20,31 @@ Wektor::Wektor(double tablica[ROZMIAR])
   }
 }
 
+ const double & Wektor:: operator[] (int index) const
+ {
+   if (index < 0 || index > ROZMIAR)
+   {
+     cerr << "indeks poza zakresem" << endl;
+     exit(1);
+   }
+   else
+   {
+     return wek[index];
+   }
+ }
 
-Wektor Wektor::  operator += (const Wektor & W)
-{
-  for(int i=0; i<ROZMIAR; i++)
-  {
-    this->wek[i]+=W.wek[i];
+ double & Wektor:: operator[] (int index)
+ {
+    if (index < 0 || index > ROZMIAR)
+    {
+      cerr << "indeks poza zakresem" << endl;
+      exit(1);
+    }
+    else
+    {
+      return wek[index];
+    }
   }
-  return *this;
-}
 
 Wektor Wektor::  operator + (const Wektor & W) const
 {
@@ -45,6 +54,15 @@ Wektor Wektor::  operator + (const Wektor & W) const
     nowy[i]=this->wek[i]+W.wek[i];
   }
   return Wektor(nowy);
+}
+
+Wektor Wektor::  operator += (const Wektor & W)
+{
+  for(int i=0; i<ROZMIAR; i++)
+  {
+    this->wek[i]+=W.wek[i];
+  }
+  return *this;
 }
 
 Wektor Wektor::  operator - (const Wektor & W) const
@@ -89,6 +107,22 @@ Wektor Wektor::  operator / (double l) const
   return Wektor(nowy);
 }
 
+bool Wektor:: operator == (const Wektor & W) const
+{
+  double epsilon=0.000001;
+  for (int i=0; i<ROZMIAR; ++i)
+  {
+    if(abs(wek[i]-W.wek[i])>epsilon)
+    return false;
+  }
+  return true;
+}
+
+bool Wektor:: operator != (const Wektor & W) const
+{
+    return !(*this==W);
+}
+
 double Wektor:: dlugosc() const
 {
   double wynik, a=0.0;
@@ -99,75 +133,6 @@ double Wektor:: dlugosc() const
   wynik=sqrt(a);
   return wynik;
 }
-
-bool Wektor:: operator == (const Wektor & W) const
-{
-  double epsilon=0.000001;
-  int licznik =0;
-  for (int i=0; i<ROZMIAR; i++)
-  {
-    if(this->wek[i]-W.wek[i]<epsilon)
-    {
-      licznik++;
-    }
-  }
-  if(licznik==ROZMIAR)
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
-}
-
-bool Wektor:: operator != (const Wektor & W) const
-{
-    //return !(this->wek==W.wek);
-    double epsilon=0.000001;
-    int licznik =0;
-    for (int i=0; i<ROZMIAR; i++)
-    {
-      if(this->wek[i]-W.wek[i]<epsilon)
-      {
-        licznik++;
-      }
-    }
-    if(licznik==ROZMIAR)
-    {
-      return false;
-    }
-    else
-    {
-      return true;
-    }
-}
-
-const double & Wektor:: operator[] (int index) const
-{
-  if (index < 0 || index > ROZMIAR)
-  {
-    cerr << "indeks poza zakresem" << endl;
-    exit(1);
-  }
-  else
-  {
-    return wek[index];
-  }
-}
-
-double & Wektor:: operator[] (int index)
-{
-   if (index < 0 || index > ROZMIAR)
-   {
-     cerr << "indeks poza zakresem" << endl;
-     exit(1);
-   }
-   else
-   {
-     return wek[index];
-   }
- }
 
 istream & operator >> (istream & str, Wektor & W)
 {

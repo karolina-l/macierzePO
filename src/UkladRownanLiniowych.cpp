@@ -20,23 +20,62 @@ UkladRownanL:: UkladRownanL(MacierzKw AA, Wektor BB)
   M=AA;
   W=BB;
 }
+
 const MacierzKw UkladRownanL::zwroc_macierz() const
 {
   return this->M;
 }
-const Wektor UkladRownanL::zwroc_wektor() const
-{
-  return this->W;
-}
+
 void UkladRownanL:: zmien_macierz(MacierzKw mat)
 {
     M=mat;
 }
+
+const Wektor UkladRownanL::zwroc_wektor() const
+{
+  return this->W;
+}
+
 void UkladRownanL::zmien_wektor(Wektor wek)
 {
   W=wek;
 }
 
+Wektor UkladRownanL:: oblicz()
+{
+  UkladRownanL pom=*this;
+  MacierzKw mat=pom.zwroc_macierz();
+  Wektor wyn, temp, wek=pom.zwroc_wektor();
+  double wyznacznik[ROZMIAR], wyzn;
+
+  wyzn=mat.wyznacznik();
+  for(int i=0; i<ROZMIAR; i++)
+  {
+    temp=mat.zwroc_kolumne(i);
+    mat.zmien_kolumne(i, wek);
+    wyznacznik[i]=mat.wyznacznik();
+    mat.zmien_kolumne(i, temp);
+  }
+
+  for (int i=0; i<ROZMIAR; i++)
+  {
+    wyn[i]=wyznacznik[i]/wyzn;
+  }
+
+return wyn;
+}
+
+double UkladRownanL:: blad(Wektor wyn)
+{
+    Wektor eps, mnoz;
+    double bl;
+
+    mnoz=M*wyn;
+    eps=mnoz-W;
+    bl=eps.dlugosc();
+
+    return bl;
+}
 
 istream & operator >> (istream &str, UkladRownanL &Ukl)
 {
@@ -77,45 +116,4 @@ ostream & operator << (ostream  &str,  const UkladRownanL &Ukl )
 
     }
   }
-}
-
-Wektor UkladRownanL:: oblicz()
-{
-  UkladRownanL pom=*this;
-  MacierzKw mat=pom.zwroc_macierz();
-  Wektor wyn, temp, wek=pom.zwroc_wektor();
-  double wyznacznik[ROZMIAR], wyzn;
-
-  wyzn=mat.wyznacznik();
-  cout<<wyzn<<endl;
-
-  for(int i=0; i<ROZMIAR; i++)
-  {
-    temp=mat.zwroc_kolumne(i);
-    mat.zmien_kolumne(i, wek);
-    wyznacznik[i]=mat.wyznacznik();
-    mat.zmien_kolumne(i, temp);
-    cout<<"wyzn"<<i<<" "<<wyznacznik[i]<<endl;
-  }
-
-  for (int i=0; i<ROZMIAR; i++)
-  {
-    wyn[i]=wyznacznik[i]/wyzn;
-  }
-
-return wyn;
-}
-
-double UkladRownanL:: blad(Wektor wyn)
-{
-    Wektor eps, mnoz;
-    double bl;
-
-    mnoz=M*wyn;
-    cout<<"mnoz"<<mnoz<<endl;
-    eps=mnoz-W;
-    cout<<"eps"<<eps<<endl;
-    bl=eps.dlugosc();
-
-    return bl;
 }

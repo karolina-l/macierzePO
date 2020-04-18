@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Wektor.hh"
 #include "Macierz.hh"
 #include "rozmiar.h"
@@ -8,39 +9,26 @@
 
 using namespace std;
 
-/*
- * Tu definiujemy pozostale funkcje.
- * Lepiej jednak stworzyc dodatkowy modul
- * i tam je umiescic. Ten przyklad pokazuje
- * jedynie absolutne minimum.
- */
-
-
 int main()
 {
-  //UkladRownanL U;
-  Wektor w;
+  //deklaracja danych
+  UkladRownanL Uk;
+  Wektor wynik;
   double blad;
-  //MacierzKw m;
-  UkladRownanL(U);
-  cout<< "Podaj uklad: ";
-  cin>> U;
-  //cout<<"podaj wektor: ";
-  //cin>>w;
-  //cout<<"podaj Macierz: ";
-  //cin>>m;
-//  U=UkladRownanL(m,w);
-
-  cout<<endl<<U<<endl;
-  w=U.oblicz();
-
-  cout<<w<<endl;
-  blad=U.blad(w);
-  cout<<blad;
-  //cout<<U.zwroc_wektor()<<endl;
-  //cout<<U.zwroc_macierz();
+  fstream plik;
 
 
+  plik.open("plik.txt", ios:: in); //otwieram plik z danymi
+  if(plik.good() == true) // jesli plik zostal poprawnie otwarty
+  {
+    plik>>Uk;             //UkladRownanL przybiera dane zawarte w pliku
+  }
+  cout<<endl<<Uk<<endl;   //wypisanieukladu rownan
+  wynik=Uk.oblicz();      //rozwiaanie ukladu rownan
+  blad=Uk.blad(wynik);    //wyznaczenie bledu przyblizen
+  cout<<"wynik "<<wynik<<endl; //wypisanie rozwiazania
+  cout<<"blad "<<blad<<endl;   //wypisanie wartosci bledu
+  plik.close();            //zamkniecie pliku
 
   return 0;
 }

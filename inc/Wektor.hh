@@ -8,59 +8,131 @@
 using namespace std;
 
 /*
- *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
- *  i jakie ma glowne cechy.
+ Klasa Wektor:
+  zawiera:
+ - pole wek - tablice statyczna doubli,
+   rozmiar zadany zewnetrznie
+ - konstruktory elementow klasy Wektor
+ - przeciazenia operatorow matematycznych
+ - metode dlugosc() zwracajaca modul z wektora
+
  */
 class Wektor {
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
-   */
+
+   double wek[ROZMIAR]; // tablica statyczna
 
 
-   double wek[ROZMIAR]; //4 tablica statyczna
   public:
   /*
-   *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */
-
+    Konstruktor klasy Wektor;
+    tworzy Wektor w postaci: wek={0.0, 0.0, 0.0}
+  */
    Wektor();
+
+   /*
+     Konstruktor klasy Wektor;
+     tworzy Wektor, ktorego elementy maja wartosc
+     rowna elementom danej tablicy tablica
+   */
    Wektor(double tablica[ROZMIAR]);
 
-   Wektor  operator += (const Wektor & W); //W1 += W2  , W1 += W3 += W4
-   Wektor  operator + (const Wektor & W) const; //W1 + W2
-   Wektor  operator - (const Wektor & W) const;
-   double operator * (const Wektor & W) const; //skalarnie
-   Wektor operator * (double l) const; // W1 * 2
-   Wektor  operator / (double l) const; // W1 / 2
 
-   double dlugosc() const; //modul
-
-   bool operator == (const Wektor & W) const;
-   bool operator != (const Wektor & W) const;
-
+   /*
+     Przeciazenie operatora "[]"
+     zwraca indeks obecnego elementu wektora
+     lub zwraca komunikat: "indeks poza zakresem"
+     i konczy dzialanie programu, by uchronic
+     przed naruszeniem pamieci
+   */
    const double & operator[] (int index) const;
+   /*
+     Przeciazenie operatora "[]"
+     zwraca indeks obecnego elementu wektora
+     lub zwraca komunikat: "indeks poza zakresem"
+     i konczy dzialanie programu, by uchronic
+     przed naruszeniem pamieci
+   */
    double & operator[] (int index);
-
-
+   /*
+     Przeciazenie operatora "+"
+     argumenty to 2 wektory
+     zwraca nowy wektor, ktorego elementy sa
+     suma poszczegolnych elementow wektorow skladowych
+   */
+   Wektor  operator + (const Wektor & W) const;
+   /*
+     Przeciazenie operatora "+="
+     argumenty to 2 wektory
+     zwraca wskaznik na zmieniony wektor podstawowy,
+     ktorego elementy sa suma poszczegolnych elementow
+     wektorow skladowych
+   */
+   Wektor  operator += (const Wektor & W);
+   /*
+   Przeciazenie operatora "-"
+   argumenty to dwa wektory
+   zwraca nowy wektor, ktorego elementy sa
+   roznica poszczegolnych elementow wektorow skladowych
+   */
+   Wektor  operator - (const Wektor & W) const;
+   /*
+   Przeciazenie operatora "*"
+   argumenty to dwa wektory
+   zwraca wynik(double), ktory jest suma wymnozonych
+    poszczegolnych elementow wektorow skladowych
+   */
+   double operator * (const Wektor & W) const;
+   /*
+   Przeciazenie operatora "*"
+   argumenty to wektor i double
+   zwraca nowy wektor, ktorego elementy sa
+   iloczynem poszczegolnych elementow wektora skladowego
+   i danej liczby double
+   */
+   Wektor operator * (double l) const;
+   /*
+   Przeciazenie operatora "/"
+   argumenty to wektor i double
+   zwraca nowy wektor, ktorego elementy sa
+   ilorazem poszczegolnych elementow wektora skladowego
+   i danej liczby double
+   */
+   Wektor  operator / (double l) const;
+   /*
+   Przeciazenie operatora "=="
+   zwraca true jesli roznica wartosci bezwzglednych danych
+   wektorow jest mniejsza niz epsilon
+   zwraca true jesli roznica wartosci bezwzglednych danych
+   wektorow jest wieksza niz epsilon
+   */
+   bool operator == (const Wektor & W) const;
+   /*
+   Przeciazenie operatora "!="
+   zwraca true jesli roznica wartosci bezwzglednych danych
+   wektorow jest wieksza niz epsilon
+   zwraca true jesli roznica wartosci bezwzglednych danych
+   wektorow jest mniejsza niz epsilon
+   */
+   bool operator != (const Wektor & W) const;
+   /*
+   metoda dlugosc zwraca liczbe double
+   rowna modulowi danego wektora
+   */
+   double dlugosc() const; //modul
 };
 
+/*
+  Przeciazenie operatora ">>"
+  dla klasy Wektor
+  zwraca strumien przesuniecia bitowego w prawo
+*/
+istream & operator >> (istream & str, Wektor & W);
 
 /*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt
- */
-istream & operator >> (istream & str, Wektor & W);//czy tu jest &?
-
-/*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt
- */
+  Przeciazenie operatora "<<"
+  dla klasy Wektor
+  zwraca strumien przesuniecia bitowego w prawo
+*/
 ostream & operator << (ostream & str, const Wektor & W);
 
 
